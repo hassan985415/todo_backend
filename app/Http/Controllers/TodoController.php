@@ -18,8 +18,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //        return 1;
-        $todos = Todo::all();
+
+        $todos = Todo::where('user_id', Auth::id());
 
         return response([
             'message' => 'success',
@@ -58,7 +58,7 @@ class TodoController extends Controller
 
 
         $todo = new Todo();
-        $todo->user_id = Auth::user()->id;
+        $todo->user_id = Auth::id();
         $todo->task = $request->task;
         $todo->description = $request->description;
 
