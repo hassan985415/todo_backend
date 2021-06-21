@@ -58,7 +58,7 @@ class TodoController extends Controller
 
 
         $todo = new Todo();
-        $todo->user_id = 1;
+        $todo->user_id = Auth::user()->id;
         $todo->task = $request->task;
         $todo->description = $request->description;
 
@@ -115,6 +115,7 @@ class TodoController extends Controller
 
 
         $todo = Todo::where('id', $id)->first();
+
         $todo->task = $request->task;
         $todo->description = $request->description;
         $todo->save();
